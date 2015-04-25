@@ -7,4 +7,9 @@ Router.map(function() {
 		path: '/',
 		template: 'home'
 	});
+
+	this.route('cardList', {
+		path: '/cardList',
+		template: 'cardList'
+	});
 });
