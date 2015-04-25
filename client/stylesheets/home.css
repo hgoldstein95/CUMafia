@@ -1,0 +1,12 @@
+#home-choice {
+	margin-top: 20px;
+}
+
+a.link-unstyled {
+	text-decoration: none;
+	color: inherit;
+}
+
+a.link-unstyled:hover {
+	color: gray;
+}
