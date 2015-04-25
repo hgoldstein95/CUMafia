@@ -2,6 +2,9 @@ Router.configure({
 	layoutTemplate: 'layout'
 });
 
-Router.route('/', function() {
-	this.render('main');
+Router.map(function() {
+	this.route('home', {
+		path: '/',
+		template: 'home'
+	});
 });
