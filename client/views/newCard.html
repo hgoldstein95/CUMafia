@@ -1,0 +1,24 @@
+<template name="newCard">
+	<div class="container-fluid">
+		<form id="new-card-form">
+			<legend>New Mafia Card</legend>
+		
+			<div class="form-group">
+				<label for="">Role Name</label>
+				<input type="text" class="form-control" id="title" placeholder="e.g. Townsperson">
+				<label for="">Description</label>
+				<input type="text" class="form-control" id="description" placeholder="Powers, conditions, etc.">
+				<label for="">Alignment</label>
+				<select name="alignment" id="inputAlignment" class="form-control" required="required">
+					<option value="success" selected="selected">Town</option>
+					<option value="danger">Mafia</option>
+					<option value="warning">Other</option>
+				</select>
+				<label for="">Win Condition <small>(Only used if allignment is "Other".)</small></label>
+				<input type="text" class="form-control" id="win" placeholder="e.g. Must be the last one alive.">
+			</div>
+		
+			<input type="submit" class="btn btn-primary" value="Submit">
+		</form>
+	</div>
+</template>
