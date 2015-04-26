@@ -12,4 +12,9 @@ Router.map(function() {
 		path: '/cardList',
 		template: 'cardList'
 	});
+
+	this.route('newCard', {
+		path: '/newCard',
+		template: 'newCard'
+	});
 });

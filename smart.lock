@@ -4,7 +4,7 @@
     "basePackages": {
       "bootstrap-3": {},
       "accounts-ui-bootstrap-3": {},
-      "jquery": {}
+      "jquery-ui": {}
     },
     "packages": {
       "bootstrap-3": {
@@ -17,10 +17,10 @@
         "tag": "v0.3.5",
         "commit": "bbd0a8a46ae02526c2ebfee05fa8075d8d04a9ba"
       },
-      "jquery": {
-        "git": "https://github.com/nrafter/meteor-jquery.git",
-        "tag": "v2.0.31",
-        "commit": "3edf878d51e6f03eff70e1a7a969a19f42b6f1a1"
+      "jquery-ui": {
+        "git": "https://github.com/TimHeckel/meteor-jquery-ui.git",
+        "tag": "v1.9.2",
+        "commit": "c437d45edcf1367df8d5ffa8bad2867758030bd2"
       }
     }
   }

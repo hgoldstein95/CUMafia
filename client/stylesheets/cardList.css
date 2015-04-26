@@ -1,0 +1,7 @@
+.card-heading {
+	cursor: pointer;
+}
+
+.card-body {
+	display: none;
+}
