@@ -17,9 +17,3 @@ Template.setup.helpers({
 		
 	}
 });
-
-Template.setup.events({
-	'change #role-count': function(evt, change) {
-		Session.get('role')
-	}
-});
