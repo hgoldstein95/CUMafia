@@ -1,4 +1,5 @@
 Meteor.subscribe('cards');
+Meteor.subscribe('users');
 
 Session.setDefault('alignment-filter', 'all');
 Session.setDefault('current-page', null);

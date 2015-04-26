@@ -20,3 +20,18 @@ Cards.allow({
 		return false;
 	}
 });
+
+Meteor.users.allow({
+	'insert': function() {
+		return false;
+	},
+	'remove': function() {
+		return false;
+	},
+	'update': function(userId, doc) {
+		var usr = Meteor.user();
+		if(usr && usr.profile.admin)
+			return true;
+		return false;
+	}
+});
