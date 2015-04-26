@@ -15,5 +15,10 @@ Template.newCard.events({
 		});
 
 		$('#new-card-form')[0].reset();
+
+		$("#success-alert").alert();
+		$("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
+		    $("#success-alert").alert('close');
+		});  
 	}
 });

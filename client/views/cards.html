@@ -1,0 +1,28 @@
+<template name="cards">
+	<div class="container-fluid">
+		<select name="align-select" id="align-select" class="form-control">
+			<option value="all" selected="selected">All</option>
+			<option value="success">Town</option>
+			<option value="danger">Mafia</option>
+			<option value="warning">Other</option>
+		</select>
+		<br>
+		<p>Click on the "+" to see descriptions, or <a href="" id="expand-all">expand all.</a></p>
+	</div>
+	<div class="container-fluid">
+		{{#each cards}}
+		<div class="panel panel-default panel-{{this.alignment}}">
+			<div class="panel-heading card-heading">
+				<h3 class="panel-title"><a href="" class="link-unstyled" id="expand-role">+ {{this.title}}</a></h3>
+			</div>
+			<div class="panel-body card-body">
+				{{this.description}}
+				{{#if thirdParty this}}
+					<hr>
+					<em>Win Condition: {{this.win}}</em>
+				{{/if}}
+			</div>
+		</div>
+		{{/each}}
+	</div>
+</template>

@@ -10,3 +10,4 @@ accounts-ui-bootstrap-3
 accounts-password
 iron:router
 jquery
+fourseven:scss
