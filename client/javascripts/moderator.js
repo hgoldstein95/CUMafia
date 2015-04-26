@@ -1,13 +1,4 @@
-Template.cards.events({
-	'click #expand-role': function(evt) {
-		$(evt.target).parent().parent().next('.panel-body').toggle();
-	},
-	'click #expand-all': function(evt) {
-		$('.panel-body').toggle();
-	}
-});
-
-Template.cards.helpers({
+Template.setup.helpers({
 	'cards': function() {
 		if(Session.get('alignment-filter') === 'all')
 			return Cards.find({'alignment': 'success'}).fetch()
@@ -16,7 +7,19 @@ Template.cards.helpers({
 		else
 			return Cards.find({'alignment': Session.get('alignment-filter')}).fetch();
 	},
-	'thirdParty': function(card) {
-		return card.alignment == "warning";
+	'totalTown': function() {
+
+	},
+	'totalMafia': function() {
+		
+	},
+	'totalOther': function() {
+		
+	}
+});
+
+Template.setup.events({
+	'change #role-count': function(evt, change) {
+		Session.get('role')
 	}
 });

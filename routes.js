@@ -35,9 +35,9 @@ Router.map(function() {
 		}
 	});
 
-	this.route('newCard', {
-		path: '/newCard',
-		template: 'newCard',
+	this.route('test', {
+		path: '/test',
+		template: 'setup',
 		data: function() {
 			Session.set('current-page', null);
 		}

@@ -3,7 +3,7 @@ Cards = new Meteor.Collection('cards');
 Cards.allow({
 	'insert': function(userId, doc) {
 		var usr = Meteor.user();
-		if(usr && usr.profile.admin)
+		if(usr && usr.profile.admin && Cards.find({'title': doc.title}).length == 0)
 			return true;
 		return false;
 	},
