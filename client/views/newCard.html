@@ -1,29 +1,31 @@
 <template name="newCard">
-	<div class="container-fluid">
-		<form id="new-card-form">
-			<legend>New Mafia Card</legend>
-		
-			<div class="form-group">
-				<label for="">Role Name</label>
-				<input type="text" class="form-control" id="title" placeholder="e.g. Townsperson" required="required">
-				<label for="">Description</label>
-				<input type="text" class="form-control" id="description" placeholder="Powers, conditions, etc." required="required">
-				<label for="">Alignment</label>
-				<select name="alignment" id="inputAlignment" class="form-control" required="required">
-					<option value="success" selected="selected">Town</option>
-					<option value="danger">Mafia</option>
-					<option value="warning">Other</option>
-				</select>
-				<label for="">Win Condition <small>(Only used if allignment is "Other".)</small></label>
-				<input type="text" class="form-control" id="win" placeholder="e.g. Must be the last one alive.">
-			</div>
-		
-			<input type="submit" class="btn btn-primary" value="Submit">
-		</form>
+	<form id="new-card-form">
+		<legend>Add New Card</legend>
+	
+		<div class="form-group">
+			<label for="">Role Name</label>
+			<input type="text" class="form-control" id="title" placeholder="e.g. Townsperson" required="required">
+			<label for="">Description</label>
+			<input type="text" class="form-control" id="description" placeholder="Powers, conditions, etc." required="required">
+			<label for="">Alignment</label>
+			<select name="alignment" id="inputAlignment" class="form-control" required="required">
+				<option value="success" selected="selected">Town</option>
+				<option value="danger">Mafia</option>
+				<option value="warning">Other</option>
+			</select>
+			<label for="">Win Condition <small>(Only used if allignment is "Other".)</small></label>
+			<input type="text" class="form-control" id="win" placeholder="e.g. Must be the last one alive.">
+		</div>
+	
+		<input type="submit" class="btn btn-primary" value="Submit">
+	</form>
 
-		<div class="alert alert-success" id="success-alert">
-    		<button type="button" class="close" data-dismiss="alert">x</button>
-    		<strong>Success! </strong>Card created.
-    	</div>
+	<div class="alert alert-success" id="success-alert">
+		<button type="button" class="close" data-dismiss="alert">x</button>
+		<strong>Success! </strong>Card created.
+	</div>
+	<div class="alert alert-danger" id="failure-alert">
+		<button type="button" class="close" data-dismiss="alert">x</button>
+		<strong>Failure! </strong>Access may be denied.
 	</div>
 </template>

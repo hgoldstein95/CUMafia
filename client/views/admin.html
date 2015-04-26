@@ -1,5 +1,39 @@
 <template name="admin">
-	<div class="container-fluid">
-		<h1>Admin</h1>
+	<div class="table-responsive">
+		<div class="container-fluid">
+			<select name="align-select" id="align-select" class="form-control">
+				<option value="all" selected="selected">All</option>
+				<option value="success">Town</option>
+				<option value="danger">Mafia</option>
+				<option value="warning">Other</option>
+			</select>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Title</th>
+						<th>Description</th>
+						<th><a class="remove-enable" href="">Remove</a></th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each cards}}
+					<tr class="{{alignment}}">
+						<td>{{title}}</td>
+						<td>{{description}}</td>
+						<td>
+							{{#if removing}}
+							<a id="remove" data-id="{{_id}}" href=""><span class="glyphicon glyphicon-trash"></span></a>
+							{{else}}
+							<span class="glyphicon glyphicon-minus"></span>
+							{{/if}}
+						</td>
+					</tr>
+					{{/each}}
+				</tbody>
+			</table>
+			<div class="container-fluid" id="new-card">
+				{{> newCard }}
+			</div>
+		</div>
 	</div>
 </template>
