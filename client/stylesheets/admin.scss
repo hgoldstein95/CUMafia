@@ -1,0 +1,20 @@
+.remove-enable {
+	color: red;
+	text-decoration: none;
+	border: red 1px solid;
+	border-radius: 2px;
+	padding: 2px;
+}
+
+.remove-enable:hover {
+	color: lighten(red, 20%);
+}
+
+.remove-enable:active {
+	color: red;
+	text-decoration: none;
+}
+
+#new-card {
+	margin-bottom: 100px;
+}
