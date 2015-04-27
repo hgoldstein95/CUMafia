@@ -7,6 +7,10 @@ Meteor.startup(function(){
 		return Meteor.users.find({});
 	});
 
+	Meteor.publish('mafiarooms', function() {
+		return MafiaRooms.find({});
+	})
+
 	Meteor.publish('messages', function() {
 		return Messages.find({});
 	})
