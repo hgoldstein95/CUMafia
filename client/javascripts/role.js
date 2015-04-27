@@ -1,12 +1,4 @@
-Messages = new Meteor.Collection("messages");
-Rooms = new Meteor.Collection("rooms");
-
 if (Meteor.isClient) {
-    Accounts.ui.config({
-        passwordSignupFields: 'USERNAME_ONLY'
-    });
-    Meteor.subscribe("rooms");
-    Meteor.subscribe("messages");
     Session.setDefault("roomname", "Meteor");
     
     Template.input.events({
@@ -20,13 +12,14 @@ if (Meteor.isClient) {
         }
     });
 
-    Template.input.helpers({
+    /*Template.input.helpers({
         isroommaster: function() {
-            return (Rooms.find({
-                room: Session.get("roomname")
-            }).roommaster == Meteor.user());
+            return true;
+            //(Rooms.find({
+            //   room: Session.get("roomname")
+            //}).roommaster == Meteor.user())
         }
-    });
+    });*/
     
     _sendMessage = function() {
         var el = document.getElementById("msg");
@@ -43,12 +36,8 @@ if (Meteor.isClient) {
     Template.messages.helpers({
         messages: function() {
             return Messages.find({
-                room: Session.get("roomname")
-            }, {
-                sort: {
-                    ts: -1
-                }
-            });
+                user: Meteor.user().username}, {sort: {ts: -1}
+            }).fetch()[0].msg;
         },
         roomname: function() {
             return Session.get("roomname");
@@ -64,10 +53,10 @@ if (Meteor.isClient) {
     Template.rooms.events({
         'click li': function(e) {
             Session.set("roomname", e.target.innerText);
-            Rooms.insert({
-                room: e.target.innerText,
-                roommaster: Meteor.user()
-            });
+            //Rooms.insert({
+              //  room: e.target.innerText,
+                //roommaster: Meteor.user()
+            //});
         }
     });
     

@@ -1,3 +1,5 @@
+Meteor.subscribe("rooms");
+Meteor.subscribe("messages");
 Meteor.subscribe('cards');
 
 Accounts.ui.config({

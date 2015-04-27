@@ -2,6 +2,10 @@
 	margin-top: 20px;
 }
 
+#chatroom {
+	padding: 60px;
+}
+
 a.link-unstyled {
 	text-decoration: none;
 	color: inherit;
