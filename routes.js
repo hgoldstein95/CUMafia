@@ -42,4 +42,12 @@ Router.map(function() {
 			Session.set('current-page', null);
 		}
 	});
+
+	this.route('chat', {
+		path: '/chat',
+		template: 'chat',
+		data: function() {
+			Session.set('current-page', null);
+		}
+	});
 });
