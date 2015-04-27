@@ -10,9 +10,9 @@ Template.cards.events({
 Template.cards.helpers({
 	'cards': function() {
 		if(Session.get('alignment-filter') === 'all')
-			return Cards.find({'alignment': 'success'}).fetch()
-				.concat(Cards.find({'alignment': 'danger'}).fetch())
-				.concat(Cards.find({'alignment': 'warning'}).fetch());
+			return Cards.find({'alignment': 'success'}, {sort: {"title": 1}}).fetch()
+				.concat(Cards.find({'alignment': 'danger'}, {sort: {"title": 1}}).fetch())
+				.concat(Cards.find({'alignment': 'warning'}, {sort: {"title": 1}}).fetch());
 		else
 			return Cards.find({'alignment': Session.get('alignment-filter')}).fetch();
 	},
