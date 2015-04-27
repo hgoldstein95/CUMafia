@@ -19,5 +19,8 @@ Template.admin.events({
 	},
 	'change #align-select': function(evt) {
 		Session.set('alignment-filter', $(evt.target).val());
+	},
+	'submit #new-admin': function(evt){
+		Meteor.users.update({'_id': Meteor.users.findOne({'username': evt.target.username.value})._id}, {$set: {'profile': {'admin': 1}}});
 	}
 });
