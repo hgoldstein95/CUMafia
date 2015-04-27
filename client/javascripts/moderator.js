@@ -53,14 +53,13 @@ Template.setup.helpers({
 				.concat(Cards.find({'alignment': 'warning'}).fetch());
 		else
 			return Cards.find({'alignment': Session.get('alignment-filter')}).fetch();
-	},
-	'totalTown': function() {
+	}
+});
 
-	},
-	'totalMafia': function() {
-		
-	},
-	'totalOther': function() {
-		
+Template.setup.events({
+	'change #role-count': function(evt) {
+		var newSetup = Session.get('setup');
+		newSetup[$(evt.target).data("title")] = $(evt.target).val();
+		Session.set('setup', newSetup);
 	}
 });
