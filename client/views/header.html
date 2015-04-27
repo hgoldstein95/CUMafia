@@ -18,7 +18,9 @@
 				<li class="{{cardsActive}}"><a class="head-link" href="/cards">View Cards</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
+				{{#unless isCordova}}
 				<li><a class="head-link" href="http://cornellmafiaclub.github.io">Cornell Mafia Club</a></li>
+				{{/unless}}
 				{{#if isAdmin}}
 				<li class="{{adminActive}}"><a class="head-link" href="/admin">Admin</a></li>
 				{{/if}}

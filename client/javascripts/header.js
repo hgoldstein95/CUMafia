@@ -21,5 +21,8 @@ Template.header.helpers({
 			return 'active';
 		else
 			return '';
+	},
+	'isCordova': function () {
+		return Meteor.isCordova;
 	}
 });
