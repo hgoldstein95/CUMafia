@@ -11,3 +11,4 @@ accounts-password
 iron:router
 jquery
 fourseven:scss
+event-hooks
