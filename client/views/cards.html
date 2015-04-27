@@ -1,10 +1,10 @@
 <template name="cards">
-	<div class="container-fluid">
+	<div class="container-fluid card">
 		<p>Click on the "+" to see descriptions, or <a href="" id="expand-all">expand all.</a></p>
 	</div>
 	<div class="container-fluid">
 		{{#each cards}}
-		<div class="panel panel-default panel-{{this.alignment}}">
+		<div class="panel panel-default panel-{{this.alignment}} card">
 			<div class="panel-heading card-heading">
 				<h3 class="panel-title"><a href="" class="link-unstyled" id="expand-role">+ {{this.title}}</a></h3>
 			</div>
