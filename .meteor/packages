@@ -6,9 +6,9 @@
 
 meteor-platform
 bootstrap-3
-accounts-ui-bootstrap-3
 accounts-password
 iron:router
 jquery
 fourseven:scss
 event-hooks
+ian:accounts-ui-bootstrap-3

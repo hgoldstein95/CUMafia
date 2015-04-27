@@ -1,11 +1,17 @@
-Meteor.publish('cards', function() {
-	return Cards.find({});
+Meteor.startup(function(){
+	Meteor.publish('cards', function() {
+		return Cards.find({});
+	});
+
+	Meteor.publish('users', function() {
+		return Meteor.users.find({});
+	});
+
+	Meteor.publish('messages', function() {
+		return Messages.find({});
+	})
 });
 
-Meteor.publish('users', function() {
-	return Meteor.users.find({});
+Meteor.methods({ 
+	eventsOnHooksInit : function(){} 
 });
-
-Meteor.publish('messages', function() {
-	return Messages.find({});
-})

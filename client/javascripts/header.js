@@ -1,7 +1,8 @@
 Template.header.helpers({
 	'isAdmin': function() {
-		var current = Meteor.user();
-		return current.profile.admin;
+		var usr = Meteor.user();
+		if(usr)
+			return usr.profile.admin;
 	},
 	'cardsActive': function() {
 		if(Session.get('current-page') === 'cards')
