@@ -17,7 +17,7 @@ Rooms.allow({
 Cards.allow({
 	'insert': function(userId, doc) {
 		var usr = Meteor.user();
-		if(usr && usr.profile.admin && Cards.find({'title': doc.title}).length == 0)
+		if(usr && usr.profile.admin && Cards.find({'title': doc.title}).fetch().length == 0)
 			return true;
 		return false;
 	},

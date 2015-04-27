@@ -37,7 +37,7 @@ if (Meteor.isClient) {
         messages: function() {
             return Messages.find({
                 user: Meteor.user().username}, {sort: {ts: -1}
-            }).fetch()[0].msg;
+            });
         },
         roomname: function() {
             return Session.get("roomname");

@@ -31,7 +31,9 @@
 <template name="messages">
 	<h4>Room: {{roomname}}</h4>
 	<div id="messages" style="background-color: #ffffff; border: 1px solid darkgray; max-height: 200px; overflow: auto">
-		{{messages}}
+		{{#each messages}}
+			{{> message}}
+		{{/each}}
 	</div>
 </template>
 
