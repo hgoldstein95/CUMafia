@@ -1,7 +1,7 @@
 Template.admin.helpers({
 	'cards': function () {
 		if(Session.get('alignment-filter') === 'all')
-			return Cards.find({}).fetch();
+			return Cards.find({}, {sort: {'title': 1}}).fetch();
 		else
 			return Cards.find({'alignment': Session.get('alignment-filter')}).fetch();
 	},

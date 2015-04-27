@@ -37,7 +37,7 @@ Router.map(function() {
 
 	this.route('test', {
 		path: '/test',
-		template: 'players',
+		template: 'setup',
 		data: function() {
 			Session.set('current-page', null);
 		}

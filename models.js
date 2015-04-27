@@ -49,3 +49,18 @@ Meteor.users.allow({
 		return false;
 	}
 });
+
+Meteor.users.deny({
+	'insert': function() {
+		return true;
+	},
+	'remove': function() {
+		return true
+	},
+	'update': function(userId, doc) {
+		var usr = Meteor.user();
+		if(usr && usr.profile.admin)
+			return false;
+		return true;
+	}
+});
