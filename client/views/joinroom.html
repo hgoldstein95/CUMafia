@@ -1,7 +1,11 @@
 <template name="joinroom">
-	<div id="rooms">
+	<div id="rooms" class="container-fluid">
 		{{#each allRooms}}
-			{{> room}}
+			<div class="panel panel-default">
+				<div class="panel-heading">
+				  <a href="/roleassignment" data-value="{{getmodname this}}">{{getmodname this}}'s Game</a>
+				</div>
+			</div>
 		{{/each}}
 	</div>
 </template>
