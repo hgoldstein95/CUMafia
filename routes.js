@@ -43,6 +43,14 @@ Router.map(function() {
 		}
 	});
 
+	this.route('moderator', {
+		path: '/moderator',
+		template: 'moderator',
+		data: function() {
+			Session.set('current-page', null);
+		}
+	});
+
 	this.route('chat', {
 		path: '/chat',
 		template: 'chat',

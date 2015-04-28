@@ -1,9 +1,8 @@
 Template.admin.helpers({
 	'cards': function () {
-		if(Session.get('alignment-filter') === 'all')
-			return Cards.find({}, {sort: {'title': 1}}).fetch();
-		else
-			return Cards.find({'alignment': Session.get('alignment-filter')}).fetch();
+		return Cards.find({'alignment': 'success'}, {sort: {"title": 1}}).fetch()
+			.concat(Cards.find({'alignment': 'danger'}, {sort: {"title": 1}}).fetch())
+			.concat(Cards.find({'alignment': 'warning'}, {sort: {"title": 1}}).fetch());
 	},
 	'removing': function(){
 		return Session.get('removing');
@@ -22,5 +21,8 @@ Template.admin.events({
 	},
 	'submit #new-admin': function(evt){
 		Meteor.users.update({'_id': Meteor.users.findOne({'username': evt.target.username.value})._id}, {$set: {'profile': {'admin': 1}}});
+	},
+	'change #secretBox': function(evt) {
+		Cards.update({_id: $(evt.target).val()}, {$set: {secret: $(evt.target).is(':checked')}});
 	}
 });

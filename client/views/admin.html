@@ -1,17 +1,12 @@
 <template name="admin">
 	<div class="table-responsive">
 		<div class="container-fluid">
-			<select name="align-select" id="align-select" class="form-control">
-				<option value="all" selected="selected">All</option>
-				<option value="success">Town</option>
-				<option value="danger">Mafia</option>
-				<option value="warning">Other</option>
-			</select>
 			<table class="table">
 				<thead>
 					<tr>
 						<th>Title</th>
 						<th>Description</th>
+						<th>Secret</th>
 						<th><a class="remove-enable" href="">Remove</a></th>
 					</tr>
 				</thead>
@@ -20,6 +15,13 @@
 					<tr class="{{alignment}}">
 						<td>{{title}}</td>
 						<td>{{description}}</td>
+						<td>
+						{{#if secret}}
+						<input type="checkbox" id="secretBox" value="{{_id}}" checked="checked">
+						{{else}}
+						<input type="checkbox" id="secretBox" value="{{_id}}">
+						{{/if}}
+						</td>
 						<td>
 							{{#if removing}}
 							<a id="remove" data-id="{{_id}}" href=""><span class="glyphicon glyphicon-trash"></span></a>

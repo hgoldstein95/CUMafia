@@ -7,7 +7,6 @@ Meteor.startup(function() {
 	Meteor.subscribe('cards');
 	Meteor.subscribe('mafiarooms');
 
-	Session.setDefault('alignment-filter', "all");
 	Session.setDefault('current-page', null);
 	Session.setDefault('removing', false);
 	Session.setDefault('rolemap',{});
