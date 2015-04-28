@@ -4,11 +4,26 @@ Template.joinroom.helpers({
 	},
 	'getmodname': function(room) {
 		return Meteor.users.findOne({_id: room.mod}).username;
+	},
+	'notMyGameAndVisible': function(room) {
+		return Meteor.userId()!=room.mod && room.visible==true;
+	},
+	'thereAreNoRooms': function(rooms) {
+		return rooms.length==0 || (rooms.length==1 && rooms[0].mod==Meteor.userId());
+	},
+	'notInAGame': function() {
+		return Session.get("myModId")==null;
+	},
+	'isMod': function() {
+		if(MafiaRooms.findOne({mod: Meteor.userId()})!=null){
+			return true;
+		return false;
+		}
 	}
 })
 
 Template.joinroom.events ({
-	'click a': function(e) {
+	'click a.room': function(e) {
 		var moderatorId = Meteor.users.findOne({username: $(e.target).data("value")})._id;
 		var idvalue = Meteor.userId();
 		var newPlayers = MafiaRooms.findOne({mod: moderatorId}).players;
@@ -19,5 +34,17 @@ Template.joinroom.events ({
 			$set: {players: newPlayers}
 		});
 		Session.set("myModId",moderatorId);
+	},
+	'click a.already-in-a-room': function() {
+			$("#failure-alert").alert();
+			$("#failure-alert").fadeTo(2000, 500).slideUp(500, function(){
+			$("#failure-alert").alert('close');
+		})
+	},
+	'click .new-game': function(evt) {
+		MafiaRooms.insert({
+			mod: Meteor.userId(),
+			players: {}
+		});
 	}
 })

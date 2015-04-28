@@ -10,11 +10,7 @@ Meteor.startup(function(){
 
 	Meteor.publish('mafiarooms', function() {
 		return MafiaRooms.find({});
-	})
-
-	Meteor.publish('messages', function() {
-		return Messages.find({});
-	})
+	});
 });
 
 Meteor.methods({ 

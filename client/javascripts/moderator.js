@@ -33,6 +33,24 @@ Template.players.events({
 				$("#failure-alert").alert('close');
 			})
 		}
+	},
+	'click button#lock-players': function(evt) {
+		var moderatorId = Meteor.userId();
+		MafiaRooms.update({_id: MafiaRooms.findOne({mod: moderatorId})._id} ,{
+			$set: {visible: false}
+		});
+	},
+	'click button#unlock-players': function(evt) {
+		var moderatorId = Meteor.userId();
+		MafiaRooms.update({_id: MafiaRooms.findOne({mod: moderatorId})._id} ,{
+			$set: {visible: true}
+		});
+	},
+	'click button#end-game': function(evt) {
+		var moderatorId = Meteor.userId();
+		var myroom = MafiaRooms.findOne({mod: moderatorId});
+		var myroomid = myroom._id;
+		MafiaRooms.remove(myroomid);
 	}
 })
 
@@ -63,10 +81,15 @@ Template.players.helpers({
 		var myroom = MafiaRooms.findOne({mod: Meteor.userId()});
 		if(myroom!=null) {
 			var players = _.keys(myroom.players);
-			console.log(players.length);
 			for (i=0;i<players.length;i++){
 			}
 			return i;
+		}
+	},
+	'visible': function() {
+		var myroom = MafiaRooms.findOne({mod: Meteor.userId()});
+		if(myroom!=null) {
+			return myroom.visible;
 		}
 	}
 })

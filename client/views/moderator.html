@@ -1,8 +1,12 @@
 <template name="players">
 	<div class="container-fluid">
 		<h1>Game <small>Setup</small></h1>
-		<button type="button" id="assign-roles" class="btn btn-warning pull-left">Assign Roles</button>
-		<button type="button" class="btn btn-warning pull-right">Lock Players</button>
+		<a href="#"><button type="button" id="assign-roles" class="btn btn-warning pull-left">Assign Roles</button></a>
+		{{#if visible}}
+		<button type="button" id="lock-players" class="btn btn-warning pull-right">Lock Players</button>
+		{{else}}
+		<button type="button" id="unlock-players" class="btn btn-warning pull-right">Unlock Players</button>
+		{{/if}}
 		<br>
 		<br>
 		<div class="alert alert-danger" id="failure-alert">
@@ -36,6 +40,7 @@
 				</tbody>
 			</table>
 		</div>
+		<a href="/"><button type="button" id="end-game" class="btn btn-warning pull-right">End Game</button></a>
 	</div>
 </template>
 

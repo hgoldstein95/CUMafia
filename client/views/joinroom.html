@@ -1,11 +1,32 @@
 <template name="joinroom">
 	<div id="rooms" class="container-fluid">
 		{{#each allRooms}}
-			<div class="panel panel-default">
-				<div class="panel-heading">
-				  <a href="/roleassignment" data-value="{{getmodname this}}">{{getmodname this}}'s Game</a>
-				</div>
-			</div>
+			{{#if notMyGameAndVisible this}}
+				{{#if notInAGame}}
+					<div class="panel panel-default">
+						<div class="panel-heading">
+					  	<a href="/roleassignment" class="room" data-value="{{getmodname this}}">{{getmodname this}}'s Game</a>
+						</div>
+					</div>
+				{{else}}
+					<div class="panel panel-default">
+						<div class="panel-heading">
+					  	<a href="#" class="already-in-a-room" data-value="{{getmodname this}}">{{getmodname this}}'s Game</a>
+						</div>
+					</div>
+					<div class="alert alert-danger" id="failure-alert">
+						<button type="button" class="close" data-dismiss="alert">x</button>
+						<strong>You are already in a game! Please leave your other game before joining a new one! </strong>
+					</div>
+				{{/if}}
+			{{/if}}
 		{{/each}}
+		{{#if thereAreNoRooms allRooms}}
+			{{#if isMod}}
+			<h3>Sorry, currently there are no mafia games. We see that you are moderating one, though. Maybe you can focus on that!</h3>
+			{{else}}
+			<h3>Sorry, currently there are no mafia games. Maybe you should <a href="/moderator" class="new-game">start one</a> yourself!</h3>
+			{{/if}}
+		{{/if}}
 	</div>
 </template>

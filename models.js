@@ -1,19 +1,5 @@
-Messages = new Meteor.Collection("messages");
-Rooms = new Meteor.Collection("rooms");
 MafiaRooms = new Meteor.Collection("MafiaRooms");
 Cards = new Meteor.Collection('cards');
-
-Messages.allow({
-	'insert': function(doc) {
-		return true;
-	}
-});
-
-Rooms.allow({
-	'insert': function(doc) {
-		return true;
-	}
-});
 
 MafiaRooms.allow({
 	'insert': function(userId, doc) {
@@ -24,7 +10,8 @@ MafiaRooms.allow({
 		return false;
 	},
 	'remove': function(userId, doc) {
-		if(Meteor.user() && MafiaRooms.find({'mod': Meteor.user()}).fetch().length == 1){
+		var userId = Meteor.userId();
+		if(userId && MafiaRooms.find({mod: userId}).fetch().length == 1){
 			return true;
 		}
 		return false;

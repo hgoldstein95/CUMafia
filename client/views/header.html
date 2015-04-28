@@ -16,6 +16,12 @@
 			<ul class="nav navbar-nav">
 				<li class="{{rulesActive}}"><a class="head-link" href="/rules">Rules</a></li>
 				<li class="{{cardsActive}}"><a class="head-link" href="/cards">View Cards</a></li>
+				{{#if isMod}}
+				<li class="{{gameActive}}"><a class="head-link" href="/moderator">Your Game</a></li>
+				{{/if}}
+				{{#if isPlayer}}
+				<li class="{{playerActive}}"><a class="head-link" href="/roleassignment">{{myMod}}'s Game</a></li>
+				{{/if}}
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				{{#unless isCordova}}
