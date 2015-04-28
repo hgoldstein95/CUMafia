@@ -10,6 +10,7 @@ Meteor.startup(function() {
 	Session.setDefault('current-page', null);
 	Session.setDefault('removing', false);
 	Session.setDefault('rolemap',{});
+	Session.setDefault('myModId',null);
 	Session.setDefault('setup', {});
 
 	Accounts.ui.config({

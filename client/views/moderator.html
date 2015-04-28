@@ -1,7 +1,14 @@
 <template name="players">
 	<div class="container-fluid">
 		<h1>Game <small>Setup</small></h1>
+		<button type="button" id="assign-roles" class="btn btn-warning pull-left">Assign Roles</button>
 		<button type="button" class="btn btn-warning pull-right">Lock Players</button>
+		<br>
+		<br>
+		<div class="alert alert-danger" id="failure-alert">
+			<button type="button" class="close" data-dismiss="alert">x</button>
+			<strong>Make sure the number of roles is equal to the number of players! </strong>
+		</div>
 		<br>
 		<br>
 		<div class="table-responsive">

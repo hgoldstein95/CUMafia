@@ -3,11 +3,14 @@ Template.room.events ({
 		var moderatorId = Meteor.users.findOne({username: e.target.textContent})._id;
 		var idvalue = Meteor.userId();
 		var newPlayers = MafiaRooms.findOne({mod: moderatorId}).players;
-		newPlayers[idvalue]=null;
+		if(!(idvalue in newPlayers)){
+			newPlayers[idvalue]=null;
+		}
 		MafiaRooms.update({_id: MafiaRooms.findOne({mod: moderatorId})._id} ,{
 			$set: {players: newPlayers}
 		});
-		console.log(MafiaRooms.findOne({mod: moderatorId}));
+		console.log(MafiaRooms.findOne({mod: moderatorId}).players);
+		Session.set("myModId",moderatorId);
 	}
 })
 

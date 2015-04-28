@@ -19,6 +19,14 @@ Router.map(function() {
 		}
 	});
 
+	this.route('newCard', {
+		path: '/newCard',
+		template: 'newCard',
+		data: function() {
+			Session.set('current-page', 'newCard');
+		}
+	});
+
 	this.route('rules', {
 		path: '/rules',
 		template: 'rules',
@@ -47,7 +55,7 @@ Router.map(function() {
 		path: '/moderator',
 		template: 'moderator',
 		data: function() {
-			Session.set('current-page', null);
+			Session.set('current-page', 'moderator');
 		}
 	});
 
@@ -55,7 +63,7 @@ Router.map(function() {
 		path: '/chat',
 		template: 'chat',
 		data: function() {
-			Session.set('current-page', null);
+			Session.set('current-page', 'chat');
 		}
 	});
 
@@ -63,7 +71,15 @@ Router.map(function() {
 		path: '/joinroom',
 		template: 'joinroom',
 		data: function() {
-			Session.set('current-page', null);
+			Session.set('current-page', 'joinroom');
+		}
+	});
+
+	this.route('roleassignment', {
+		path: '/roleassignment',
+		template: 'roleassignment',
+		data: function() {
+			Session.set('current-page', 'roleassignment');
 		}
 	});
 });

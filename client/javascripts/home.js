@@ -7,3 +7,9 @@ Template.home.events({
 		});
 	}
 })
+
+Template.home.helpers({
+	'isaUser': function(){
+		return Meteor.user();
+	}
+})

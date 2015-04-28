@@ -1,32 +1,61 @@
 Template.players.events({
-	'click button': function(evt) {
-		var array;
+	'click button#assign-roles': function(evt) {
+		var moderatorId = Meteor.userId();
+		var myroom = MafiaRooms.findOne({mod: moderatorId});
+		var newPlayers = myroom.players;
+		var ids = _.keys(newPlayers);
+		var array = Session.get("setup");
+		var keys = _.keys(array);
+		var listofallroles=[];
 		var randomindex;
 		var element;
-		var map = {};
-		var users = Meteor.users.find().fetch();
-		for (i=0; i<users.length; i++) {
-			array = Cards.find().fetch();
-			randomindex = Math.floor( Math.random() * array.length);
-			element = array[randomindex].title;
-			map[users[i]._id] = element;
+		for (r=0; r<keys.length; r++) {
+			while (array[keys[r]]>0){
+				listofallroles[listofallroles.length]=keys[r];
+				array[keys[r]]=array[keys[r]]-1;
+			}
 		}
-		Session.set('rolemap',map);
+		console.log(listofallroles);
+		var length=listofallroles.length;
+		if(listofallroles.length==ids.length){
+			for (i=0; i<length; i++) {
+				randomindex = Math.floor( Math.random() * listofallroles.length);
+				element = listofallroles[randomindex];
+				console.log(ids[i]);
+				newPlayers[ids[i]] = element;
+				listofallroles.splice(randomindex,1);
+			}
+			MafiaRooms.update({_id: MafiaRooms.findOne({mod: moderatorId})._id} ,{
+				$set: {players: newPlayers}
+			});
+		}
+		else {
+				$("#failure-alert").alert();
+				$("#failure-alert").fadeTo(2000, 500).slideUp(500, function(){
+				$("#failure-alert").alert('close');
+			})
+		}
+		console.log(myroom.players);
 	}
-});
+})
 
 Template.players.helpers({
 	'players': function() {
 		var myroom = MafiaRooms.findOne({mod: Meteor.userId()});
 		if(myroom!=null) {
 			var ids=_.keys(myroom.players);
+			var vals=_.values(myroom.players);
 			var u;
 			var r;
 			var usersAndRoles = [];
 			for (i=0;i<ids.length;i++) {
-				console.log(ids[i])
 				u=Meteor.users.findOne({_id: ids[i]}).username;
-				r="Waiting";
+				if(!vals[i]){
+					r="Waiting";
+				}
+				else{
+					r=vals[i];
+				}
 				usersAndRoles[i]={username: u, role: r};
 			};
 			return usersAndRoles;
