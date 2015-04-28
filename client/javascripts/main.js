@@ -5,6 +5,7 @@ Meteor.startup(function() {
 	Meteor.subscribe("rooms");
 	Meteor.subscribe("messages");
 	Meteor.subscribe('cards');
+	Meteor.subscribe('mafiarooms');
 
 	Session.setDefault('current-page', null);
 	Session.setDefault('removing', false);
@@ -19,3 +20,5 @@ Meteor.startup(function() {
 Hooks.onLoggedOut = function(userId) {
 	Router.go('/');
 };
+
+

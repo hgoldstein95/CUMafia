@@ -1,5 +1,6 @@
 Messages = new Meteor.Collection("messages");
 Rooms = new Meteor.Collection("rooms");
+MafiaRooms = new Meteor.Collection("MafiaRooms");
 Cards = new Meteor.Collection('cards');
 
 Messages.allow({
@@ -13,6 +14,30 @@ Rooms.allow({
 		return true;
 	}
 });
+
+MafiaRooms.allow({
+	'insert': function(userId, doc) {
+		var usr = Meteor.user();
+		console.log(MafiaRooms.find({mod: usr}).fetch().length);
+		if(usr && MafiaRooms.find({mod: usr}).fetch().length == 0){
+			return true;
+		}
+		return false;
+	},
+	'remove': function(userId, doc) {
+		if(Meteor.user() && MafiaRooms.find({'mod': Meteor.user()}).fetch().length == 1){
+			return true;
+		}
+		return false;
+	},
+	'update': function(userId, doc) {
+		if(Meteor.user()){
+			return true;
+		}
+		return false;
+	}
+
+})
 
 Cards.allow({
 	'insert': function(userId, doc) {

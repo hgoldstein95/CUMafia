@@ -11,15 +11,6 @@ if (Meteor.isClient) {
             }
         }
     });
-
-    /*Template.input.helpers({
-        isroommaster: function() {
-            return true;
-            //(Rooms.find({
-            //   room: Session.get("roomname")
-            //}).roommaster == Meteor.user())
-        }
-    });*/
     
     _sendMessage = function() {
         var el = document.getElementById("msg");

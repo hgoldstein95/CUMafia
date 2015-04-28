@@ -50,4 +50,12 @@ Router.map(function() {
 			Session.set('current-page', null);
 		}
 	});
+
+	this.route('joinroom', {
+		path: '/joinroom',
+		template: 'joinroom',
+		data: function() {
+			Session.set('current-page', null);
+		}
+	});
 });
