@@ -1,4 +1,5 @@
 Meteor.startup(function(){
+	MafiaRooms.remove({});
 	Meteor.publish('cards', function() {
 		return Cards.find({});
 	});

@@ -16,32 +16,22 @@ Template.players.events({
 });
 
 Template.players.helpers({
-	'randomrole': function() {
-		var array = Cards.find().fetch();
-		var randomindex = Math.floor( Math.random() * array.length);
-		var element = array[randomindex];
-		return element.title;
-	},
-	/*'assignroles': function() {
-		var array;
-		var randomindex;
-		var element;
-		var currentmap;
-		var newmap;
-		for user in Meteor.user.find().fetch() {
-			array = Cards.find().fetch();
-			randomindex = Math.floor( Math.random() * array.length);
-			element = array[randomindex];
-			currentmap=Session.get('rolemap');
-			newmap=currentmap;
-			newmap.set(user,element);
-			Session.set('rolemap',newmap)
-		}
-		return Session.get('rolemap');
-	},*/
-	'getrole': function(name) {
-		console.log(Meteor.users.findOne({username: name})._id);
-		return Session.get('rolemap')[Meteor.users.findOne({username: name})._id];
+	'players': function() {
+		var myroom = MafiaRooms.findOne({mod: Meteor.userId()});
+		if(myroom!=null) {
+			var ids=_.keys(myroom.players);
+			var u;
+			var r;
+			var usersAndRoles = [];
+			for (i=0;i<ids.length;i++) {
+				console.log(ids[i])
+				u=Meteor.users.findOne({_id: ids[i]}).username;
+				r="Waiting";
+				usersAndRoles[i]={username: u, role: r};
+			};
+			return usersAndRoles;
+		return [];
+		};
 	}
 })
 
