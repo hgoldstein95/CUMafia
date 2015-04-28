@@ -9,7 +9,6 @@ Template.room.events ({
 		MafiaRooms.update({_id: MafiaRooms.findOne({mod: moderatorId})._id} ,{
 			$set: {players: newPlayers}
 		});
-		console.log(MafiaRooms.findOne({mod: moderatorId}).players);
 		Session.set("myModId",moderatorId);
 	}
 })

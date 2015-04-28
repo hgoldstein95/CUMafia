@@ -43,27 +43,11 @@ Router.map(function() {
 		}
 	});
 
-	this.route('test', {
-		path: '/test',
-		template: 'players',
-		data: function() {
-			Session.set('current-page', null);
-		}
-	});
-
 	this.route('moderator', {
 		path: '/moderator',
 		template: 'moderator',
 		data: function() {
 			Session.set('current-page', 'moderator');
-		}
-	});
-
-	this.route('chat', {
-		path: '/chat',
-		template: 'chat',
-		data: function() {
-			Session.set('current-page', 'chat');
 		}
 	});
 

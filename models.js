@@ -18,7 +18,6 @@ Rooms.allow({
 MafiaRooms.allow({
 	'insert': function(userId, doc) {
 		var userId = Meteor.userId();
-		console.log(MafiaRooms.find({mod: userId}).fetch().length);
 		if(userId && MafiaRooms.find({mod: userId}).fetch().length == 0){
 			return true;
 		}

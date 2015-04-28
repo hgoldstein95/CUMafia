@@ -8,16 +8,9 @@ Template.roleassignment.helpers({
 		if(myroom.players!=null){
 			myrole=myroom.players[myId];
 		}
-		console.log(myrole);
-		return myrole;
-	},
-	'getDescription': function(role) {
-		return Cards.findOne({title: role}).description;
-	},
-	'getWin': function(role) {
-		return Cards.findOne({title: role}).win;
+		return Cards.findOne({title: myrole});
 	},
 	'thirdParty': function(role) {
-		return Cards.findOne({title: role}).alignment == "warning";
+		return role.alignment == "warning";
 	}
 })

@@ -15,13 +15,11 @@ Template.players.events({
 				array[keys[r]]=array[keys[r]]-1;
 			}
 		}
-		console.log(listofallroles);
 		var length=listofallroles.length;
 		if(listofallroles.length==ids.length){
 			for (i=0; i<length; i++) {
 				randomindex = Math.floor( Math.random() * listofallroles.length);
 				element = listofallroles[randomindex];
-				console.log(ids[i]);
 				newPlayers[ids[i]] = element;
 				listofallroles.splice(randomindex,1);
 			}
@@ -35,7 +33,6 @@ Template.players.events({
 				$("#failure-alert").alert('close');
 			})
 		}
-		console.log(myroom.players);
 	}
 })
 
