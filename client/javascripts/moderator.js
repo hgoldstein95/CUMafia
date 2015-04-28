@@ -58,6 +58,16 @@ Template.players.helpers({
 			return usersAndRoles;
 		return [];
 		};
+	},
+	'numPlayers': function() {
+		var myroom = MafiaRooms.findOne({mod: Meteor.userId()});
+		if(myroom!=null) {
+			var players = _.keys(myroom.players);
+			console.log(players.length);
+			for (i=0;i<players.length;i++){
+			}
+			return i;
+		}
 	}
 })
 

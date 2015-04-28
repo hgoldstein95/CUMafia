@@ -19,14 +19,6 @@ Router.map(function() {
 		}
 	});
 
-	this.route('newCard', {
-		path: '/newCard',
-		template: 'newCard',
-		data: function() {
-			Session.set('current-page', 'newCard');
-		}
-	});
-
 	this.route('rules', {
 		path: '/rules',
 		template: 'rules',
