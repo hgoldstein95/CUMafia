@@ -40,6 +40,16 @@ Template.moderator.events({
 			$set: {visible: false}
 		});
 	},
+	'click button#kick-player': function(e) {
+		var badPlayer=Meteor.users.findOne({username: $(e.target).data("value")});
+		var moderatorId = Meteor.userId();
+		var myroom = MafiaRooms.findOne({mod: moderatorId});
+		var newPlayers = myroom.players;
+		delete newPlayers[badPlayer._id];
+		MafiaRooms.update({_id: MafiaRooms.findOne({mod: moderatorId})._id} ,{
+			$set: {players: newPlayers}
+		});
+	},
 	'click button#unlock-players': function(evt) {
 		var moderatorId = Meteor.userId();
 		MafiaRooms.update({_id: MafiaRooms.findOne({mod: moderatorId})._id} ,{
