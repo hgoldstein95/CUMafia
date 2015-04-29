@@ -1,4 +1,4 @@
-Template.players.events({
+Template.moderator.events({
 	'click button#assign-roles': function(evt) {
 		var moderatorId = Meteor.userId();
 		var myroom = MafiaRooms.findOne({mod: moderatorId});
@@ -51,10 +51,15 @@ Template.players.events({
 		var myroom = MafiaRooms.findOne({mod: moderatorId});
 		var myroomid = myroom._id;
 		MafiaRooms.remove(myroomid);
+	},
+	'change #role-count': function(evt) {
+		var newSetup = Session.get('setup');
+		newSetup[$(evt.target).data("title")] = $(evt.target).val();
+		Session.set('setup', newSetup);
 	}
 })
 
-Template.players.helpers({
+Template.moderator.helpers({
 	'players': function() {
 		var myroom = MafiaRooms.findOne({mod: Meteor.userId()});
 		if(myroom!=null) {
@@ -91,21 +96,10 @@ Template.players.helpers({
 		if(myroom!=null) {
 			return myroom.visible;
 		}
-	}
-})
-
-Template.setup.helpers({
+	},
 	'cards': function() {
 		return Cards.find({'alignment': 'success'}).fetch()
 			.concat(Cards.find({'alignment': 'danger'}).fetch())
 			.concat(Cards.find({'alignment': 'warning'}).fetch());
-	}
-});
-
-Template.setup.events({
-	'change #role-count': function(evt) {
-		var newSetup = Session.get('setup');
-		newSetup[$(evt.target).data("title")] = $(evt.target).val();
-		Session.set('setup', newSetup);
 	}
 });

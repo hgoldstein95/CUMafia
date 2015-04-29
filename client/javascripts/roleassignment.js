@@ -38,7 +38,8 @@ Template.roleassignment.events({
 			newPlayers = myroom.players;
 			delete newPlayers[myId];
 		}
-		MafiaRooms.update({_id: MafiaRooms.findOne({mod: myModId})._id} ,{
+		MafiaRooms.update({_id: MafiaRooms.findOne({mod: myModId})._id} ,
+		{
 			$set: {players: newPlayers}
 		});
 		Session.set("myModId",null);

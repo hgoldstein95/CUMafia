@@ -5,8 +5,7 @@
 		{{else}}
 		{{#if role}}
 		{{#with role}}
-			<h1>{{modName}}'s Mafia Game</h1>
-			<h3>Your Role</h3>
+			<h2>{{modName}}'s Game</h2>
 			<div class="panel panel-default panel-{{alignment}} card">
 			<div class="panel-heading card-heading">
 				<h3 class="panel-title"><a href="" class="link-unstyled" id="expand-role">{{title}}</a></h3>
@@ -21,10 +20,10 @@
 		</div>
 		{{/with}}
 		{{else}}
-			<h1>{{modName}}'s Mafia Game</h1>
-			<h3>Please wait to be assigned a role</h3>
+			<h2>{{modName}}'s Game</h2>
+			<h3>Please wait to be assigned a role.</h3>
 		{{/if}}
-		<a href="/"><button type="button" id="leave-game" class="btn btn-warning pull-right">Leave Game</button></a>
+		<a href="/"><button type="button" id="leave-game" class="btn btn-danger pull-right">Leave Game</button></a>
 		{{/if}}
 	</div>
 
