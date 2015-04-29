@@ -56,3 +56,9 @@ Template.header.helpers({
 		return Meteor.isCordova;
 	}
 });
+
+Template.header.events({
+	'click .navbar-nav li a': function() {
+		$(".navbar-collapse").collapse('hide');
+	}
+});
