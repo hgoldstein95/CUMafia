@@ -1,75 +1,69 @@
-<template name="players">
-	<div class="container-fluid">
-		<h1>Game <small>Setup</small></h1>
-		<a href="#"><button type="button" id="assign-roles" class="btn btn-warning pull-left">Assign Roles</button></a>
-		{{#if visible}}
-		<button type="button" id="lock-players" class="btn btn-warning pull-right">Lock Players</button>
-		{{else}}
-		<button type="button" id="unlock-players" class="btn btn-warning pull-right">Unlock Players</button>
-		{{/if}}
-		<br>
-		<br>
-		<div class="alert alert-danger" id="failure-alert">
-			<button type="button" class="close" data-dismiss="alert">x</button>
-			<strong>Make sure the number of roles is equal to the number of players! </strong>
-		</div>
-		<br>
-		<br>
-		<div class="table-responsive">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Player</th>
-						<th>Role</th>
-						<th>Comments</th>
-					</tr>
-				</thead>
-				<tbody>
-					{{#each players}}
-						<tr>
-							<td>{{this.username}}</td>
-							<td><em>{{this.role}}</em></td>
-							<td><input type="text" name="" id="input" class="form-control" title=""></td>
-						</tr>
-					{{/each}}
-					<tr>
-						<td></td>
-						<td></td>
-						<td><h3 class="pull-right">{{numPlayers}} Players</h3></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<a href="/"><button type="button" id="end-game" class="btn btn-warning pull-right">End Game</button></a>
-	</div>
-</template>
-
-<template name="setup">
-	<div class="container-fluid">
-		<div class="table-responsive">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Title</th>
-						<th>Quantity</th>
-					</tr>
-				</thead>
-				<tbody>
-					{{#each cards}}
-					<tr class="{{alignment}}">
-						<td>{{title}}</td>
-						<td><input type="number" data-title="{{title}}" id="role-count" value="0" min="0" step="1"></td>
-					</tr>
-					{{/each}}
-				</tbody>
-			</table>
-		</div>	
-	</div>
-</template>
-
 <template name="moderator">
-	{{> players }}
-	<br>
-	<br>
-	{{> setup }}
+	<div class="container-fluid">
+		<div class="container-fluid">
+			<h2>Moderator</h2>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="alert alert-danger" id="failure-alert">
+					<button type="button" class="close" data-dismiss="alert">x</button>
+					<strong>Make sure the number of roles is equal to the number of players! </strong>
+				</div>
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Player</th>
+								<th>Role</th>
+								<th>Comments</th>
+							</tr>
+						</thead>
+						<tbody>
+							{{#each players}}
+								<tr>
+									<td>{{this.username}}</td>
+									<td><em>{{this.role}}</em></td>
+									<td><input type="text" name="" id="input" class="form-control" title=""></td>
+								</tr>
+							{{/each}}
+							<tr>
+								<td></td>
+								<td></td>
+								<td><h3 class="pull-right">
+								{{numPlayers}} Player(s)</h3></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<a href="#"><button type="button" id="assign-roles" class="btn btn-primary pull-left">Assign Roles</button></a>
+				{{#if visible}}
+				<button type="button" id="lock-players" class="btn btn-warning">Lock Players</button>
+				{{else}}
+				<button type="button" id="unlock-players" class="btn btn-primary">Unlock Players</button>
+				{{/if}}
+			</div>
+			<div class="col-sm-6">
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Title</th>
+								<th>Quantity</th>
+							</tr>
+						</thead>
+						<tbody>
+							{{#each cards}}
+							<tr class="{{alignment}}">
+								<td>{{title}}</td>
+								<td><input type="number" data-title="{{title}}" id="role-count" value="0" min="0" step="1" class="form-control"></td>
+							</tr>
+							{{/each}}
+						</tbody>
+					</table>
+				</div>	
+			</div>
+		</div>
+		<a href="/"><button type="button" id="end-game" class="btn btn-danger">End Game</button></a>
+	</div>
 </template>
