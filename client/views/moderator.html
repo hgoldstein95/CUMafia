@@ -46,9 +46,9 @@
 					</label>
 				</div>
 				{{#if visible}}
-				<button type="button" id="lock-players" class="btn btn-warning">Lock Players</button>
+					<button type="button" id="lock-players" class="btn btn-warning">Lock Players</button>
 				{{else}}
-				<button type="button" id="unlock-players" class="btn btn-primary">Unlock Players</button>
+					<button type="button" id="unlock-players" class="btn btn-primary">Unlock Players</button>
 				{{/if}}
 			</div>
 			<div class="col-sm-6">
@@ -62,10 +62,10 @@
 						</thead>
 						<tbody>
 							{{#each cards}}
-							<tr class="{{alignment}}">
-								<td>{{title}}</td>
-								<td><input type="number" data-title="{{title}}" id="role-count" value="0" min="0" step="1" class="form-control"></td>
-							</tr>
+								<tr class="{{alignment}}">
+									<td>{{title}}</td>
+									<td><input type="number" data-title="{{title}}" id="role-count" value="0" min="0" step="1" class="form-control"></td>
+								</tr>
 							{{/each}}
 						</tbody>
 					</table>

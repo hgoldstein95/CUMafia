@@ -11,7 +11,6 @@ Template.header.helpers({
 		return Session.get("myModId");
 	},
 	'myMod': function() {
-		//myModId=Session.get("myModId");
 		if(Meteor.users.findOne({_id: Session.get("myModId")}))
 			return Meteor.users.findOne({_id: Session.get("myModId")}).username;
 	},
@@ -51,9 +50,6 @@ Template.header.helpers({
 });
 
 Template.header.events({
-	'click .navbar-nav li a': function() {
-		$(".navbar-collapse").collapse('hide');
-	},
 	'click .navbar-nav li a': function() {
 		$(".navbar-collapse").collapse('hide');
 	}

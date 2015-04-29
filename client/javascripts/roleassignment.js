@@ -1,20 +1,16 @@
 Template.roleassignment.helpers({
 	'role': function() {
-		var myId=Meteor.userId();
-		var myModId=Session.get("myModId");
-		var myroom=MafiaRooms.findOne({mod: myModId});
-		var players=myroom.players;
-		var myrole=null;
-		if(myroom.players!=null){
-			myrole=myroom.players[myId];
+		var myRoom=MafiaRooms.findOne({mod: Session.get("myModId")});
+		var myRole;
+		if(myRoom.players){
+			myRole=myRoom.players[Meteor.userId()];
 		}
-		return Cards.findOne({title: myrole});
+		return Cards.findOne({title: myRole});
 	},
 	'roomDeleted': function() {
 		var myModId=Session.get("myModId");
-		var myId=Meteor.userId();
-		var myroom = MafiaRooms.findOne({mod:myModId});
-		var deleted = myroom==null || !(_.keys(myroom.players).indexOf(myId)!=-1);
+		var myRoom = MafiaRooms.findOne({mod:myModId});
+		var deleted = myRoom==null || !(_.keys(myRoom.players).indexOf(Meteor.userId())!=-1);
 		if (deleted){
 			Session.set("myModId",null);
 		}
@@ -27,18 +23,14 @@ Template.roleassignment.helpers({
 		return role.alignment == "warning";
 	},
 	'open': function() {
-		var myModId=Session.get("myModId");
-		var myroom=MafiaRooms.findOne({mod: myModId});
-		if(myroom){
-			return myroom.open;
+		if(!Session.get("myModId")){
+			return false;
 		}
+		return MafiaRooms.findOne({mod: Session.get("myModId")}).open;
 	},
 	'roles': function() {
-		var myId=Meteor.userId();
-		var myModId=Session.get("myModId");
-		var myroom=MafiaRooms.findOne({mod: myModId});
-		var players=myroom.players;
-		var values=_.values(players);
+		var myRoom=MafiaRooms.findOne({mod: Session.get("myModId")});
+		var values=_.values(myRoom.players);
 		var roles=[];
 		for(i=0;i<values.length;i++){
 			roles[i]=Cards.findOne({title: values[i]});
@@ -49,13 +41,11 @@ Template.roleassignment.helpers({
 
 Template.roleassignment.events({
 	'click button#leave-game': function(evt) {
-		var myId=Meteor.userId();
 		var myModId=Session.get("myModId");
-		var myroom=MafiaRooms.findOne({mod: myModId});
-		var newPlayers=[];
-		if(myroom!=null){
-			newPlayers = myroom.players;
-			delete newPlayers[myId];
+		var myRoom=MafiaRooms.findOne({mod: myModId});
+		if(myRoom){
+			var newPlayers = myRoom.players;
+			delete newPlayers[Meteor.userId()];
 		}
 		MafiaRooms.update({_id: MafiaRooms.findOne({mod: myModId})._id} ,
 		{

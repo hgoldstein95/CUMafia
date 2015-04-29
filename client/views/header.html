@@ -17,18 +17,18 @@
 				<li class="{{rulesActive}}"><a class="head-link" href="/rules">Rules</a></li>
 				<li class="{{cardsActive}}"><a class="head-link" href="/cards">View Cards</a></li>
 				{{#if isMod}}
-				<li class="{{gameActive}}"><a class="head-link" href="/moderator">Your Game</a></li>
+					<li class="{{gameActive}}"><a class="head-link" href="/moderator">Your Game</a></li>
 				{{/if}}
 				{{#if isPlayer}}
-				<li class="{{playerActive}}"><a class="head-link" href="/roleassignment">{{myMod}}'s Game</a></li>
+					<li class="{{playerActive}}"><a class="head-link" href="/roleassignment">{{myMod}}'s Game</a></li>
 				{{/if}}
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				{{#unless isCordova}}
-				<li><a class="head-link" href="http://cornellmafiaclub.github.io">Cornell Mafia Club</a></li>
+					<li><a class="head-link" href="http://cornellmafiaclub.github.io">Cornell Mafia Club</a></li>
 				{{/unless}}
 				{{#if isAdmin}}
-				<li class="{{adminActive}}"><a class="head-link" href="/admin">Admin</a></li>
+					<li class="{{adminActive}}"><a class="head-link" href="/admin">Admin</a></li>
 				{{/if}}
 				<li><a href="#">{{> loginButtons }}</a></li>
 			</ul>

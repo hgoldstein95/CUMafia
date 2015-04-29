@@ -9,32 +9,29 @@ Template.joinroom.helpers({
 		return Meteor.userId()!=room.mod && room.visible==true;
 	},
 	'thereAreNoRooms': function(rooms) {
-		allRoomsAreInvisible=true;
+		var allRoomsAreInvisible=true;
 		for(i=0;i<rooms.length;i++){
-			if(rooms[i].visible==true && rooms[i].mod!=Meteor.userId()){
+			if(rooms[i].visible && rooms[i].mod!=Meteor.userId()){
 				allRoomsAreInvisible=false;
 			}
 		}
-		return rooms.length==0 || (rooms.length==1 && rooms[0].mod==Meteor.userId()) || allRoomsAreInvisible;
+		return allRoomsAreInvisible;
 	},
 	'notInAGame': function() {
-		return Session.get("myModId")==null;
+		return !(Session.get("myModId"));
 	},
 	'isMod': function() {
-		if(MafiaRooms.findOne({mod: Meteor.userId()})!=null){
-			return true;
-		return false;
-		}
+		return MafiaRooms.findOne({mod: Meteor.userId()});
 	}
 })
 
 Template.joinroom.events ({
 	'click a.room': function(e) {
 		var moderatorId = Meteor.users.findOne({username: $(e.target).data("value")})._id;
-		var idvalue = Meteor.userId();
+		var idValue = Meteor.userId();
 		var newPlayers = MafiaRooms.findOne({mod: moderatorId}).players;
-		if(!(idvalue in newPlayers)){
-			newPlayers[idvalue]=null;
+		if(!(idValue in newPlayers)){
+			newPlayers[idValue]=null;
 		}
 		MafiaRooms.update({_id: MafiaRooms.findOne({mod: moderatorId})._id} ,{
 			$set: {players: newPlayers}
@@ -44,7 +41,6 @@ Template.joinroom.events ({
 	'click a.already-in-a-room': function() {
 			$("#failure-alert").alert();
 			$("#failure-alert").fadeTo(2000, 500).slideUp(500, function(){
-			//$("#failure-alert").alert('close');
 		})
 	},
 	'click .new-game': function(evt) {
