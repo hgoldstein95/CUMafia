@@ -5,7 +5,9 @@
 		{{else}}
 		{{#if role}}
 		{{#with role}}
-			<a href="/"><button type="button" id="leave-game" class="btn btn-danger pull-right">Leave Game</button></a>
+			<div class="container-fluid">
+				<a href="/"><button type="button" id="leave-game" class="btn btn-danger pull-right">Leave Game</button></a>
+			</div>
 			<h2>{{modName}}'s Game</h2>
 			<div class="panel panel-default panel-{{alignment}} card">
 			<div class="panel-heading card-heading">
@@ -21,7 +23,9 @@
 		</div>
 		{{/with}}
 		{{else}}
-			<a href="/"><button type="button" id="leave-game" class="btn btn-danger pull-right">Leave Game</button></a>
+			<div class="container-fluid">
+				<a href="/"><button type="button" id="leave-game" class="btn btn-danger pull-right">Leave Game</button></a>
+			</div>
 			<h2>{{modName}}'s Game</h2>
 			<h3>Please wait to be assigned a role.</h3>
 		{{/if}}
