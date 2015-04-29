@@ -26,14 +26,8 @@ Template.moderator.events({
                 newPlayers[ids[i]] = element;
                 listofallroles.splice(randomindex, 1);
             }
-            MafiaRooms.update({
-                _id: MafiaRooms.findOne({
-                    mod: moderatorId
-                })._id
-            }, {
-                $set: {
-                    players: newPlayers,
-                    open: open
+            MafiaRooms.update({_id: MafiaRooms.findOne({mod: moderatorId})._id}, {
+                $set: {players: newPlayers, initialPlayers: newPlayers, open: open
                 }
             });
         } else {

@@ -30,7 +30,7 @@ Template.roleassignment.helpers({
 	},
 	'roles': function() {
 		var myRoom=MafiaRooms.findOne({mod: Session.get("myModId")});
-		var values=_.values(myRoom.players);
+		var values=_.values(myRoom.initialPlayers);
 		var roles=[];
 		for(i=0;i<values.length;i++){
 			roles[i]=Cards.findOne({title: values[i]});
