@@ -1,3 +1,6 @@
+$theme-color: #aea79f;
+$theme-color-two: #dd4814;
+
 #home-choice {
 	margin-top: 20px;
 }
@@ -9,4 +12,13 @@ a.link-unstyled {
 
 a.link-unstyled:hover {
 	font-weight: bold;
+}
+
+#login-buttons-logout, #login-buttons-password {
+	background: $theme-color;
+	border-color: $theme-color;
+}
+
+.dropdown-toggle {
+	color: white;
 }
