@@ -45,7 +45,7 @@ Template.joinroom.events ({
 	'click a.already-in-a-room': function() {
 			$("#failure-alert").alert();
 			$("#failure-alert").fadeTo(2000, 500).slideUp(500, function(){
-			$("#failure-alert").alert('close');
+			//$("#failure-alert").alert('close');
 		})
 	},
 	'click .new-game': function(evt) {
