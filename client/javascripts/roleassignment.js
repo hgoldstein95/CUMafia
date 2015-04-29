@@ -42,7 +42,7 @@ Template.roleassignment.helpers({
 		var roles=[];
 		for(i=0;i<values.length;i++){
 			roles[i]=Cards.findOne({title: values[i]});
-		}
+		}d
 		return roles;
 	}
 })
