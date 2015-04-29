@@ -31,6 +31,7 @@
 							<tr>
 								<td></td>
 								<td></td>
+								<td></td>
 								<td><h3 class="pull-right">
 								{{numPlayers}} Player(s)</h3></td>
 							</tr>
@@ -38,6 +39,12 @@
 					</table>
 				</div>
 				<a href="#"><button type="button" id="assign-roles" class="btn btn-primary pull-left">Assign Roles</button></a>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" id="open">
+						Open
+					</label>
+				</div>
 				{{#if visible}}
 				<button type="button" id="lock-players" class="btn btn-warning">Lock Players</button>
 				{{else}}

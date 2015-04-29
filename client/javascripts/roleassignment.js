@@ -25,6 +25,25 @@ Template.roleassignment.helpers({
 	},
 	'thirdParty': function(role) {
 		return role.alignment == "warning";
+	},
+	'open': function() {
+		var myModId=Session.get("myModId");
+		var myroom=MafiaRooms.findOne({mod: myModId});
+		if(myroom){
+			return myroom.open;
+		}
+	},
+	'roles': function() {
+		var myId=Meteor.userId();
+		var myModId=Session.get("myModId");
+		var myroom=MafiaRooms.findOne({mod: myModId});
+		var players=myroom.players;
+		var values=_.values(players);
+		var roles=[];
+		for(i=0;i<values.length;i++){
+			roles[i]=Cards.findOne({title: values[i]});
+		}
+		return roles;
 	}
 })
 

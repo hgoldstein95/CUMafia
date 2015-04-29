@@ -25,6 +25,25 @@
 		{{/if}}
 		<a href="/"><button type="button" id="leave-game" class="btn btn-danger pull-right">Leave Game</button></a>
 		{{/if}}
+		{{#if open}}
+			<br>
+			<br>
+			<h2>In this setup...</h2>
+			{{#each roles}}
+				<div class="panel panel-default panel-{{alignment}} card">
+				<div class="panel-heading card-heading">
+					<h3 class="panel-title"><a href="" class="link-unstyled" id="expand-role">{{title}}</a></h3>
+				</div>
+				<div class="panel-body">
+				{{description}}
+				{{#if thirdParty this}}
+					<hr>
+					<em>Win Condition: {{win}}</em>
+				{{/if}}
+				</div>
+				</div>
+			{{/each}}
+		{{/if}}
 	</div>
 
 </template>

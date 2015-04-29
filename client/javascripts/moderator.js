@@ -17,6 +17,7 @@ Template.moderator.events({
 		}
 		var length=listofallroles.length;
 		if(listofallroles.length==ids.length){
+			var open = $('#open').is(':checked');
 			for (i=0; i<length; i++) {
 				randomindex = Math.floor( Math.random() * listofallroles.length);
 				element = listofallroles[randomindex];
@@ -24,7 +25,7 @@ Template.moderator.events({
 				listofallroles.splice(randomindex,1);
 			}
 			MafiaRooms.update({_id: MafiaRooms.findOne({mod: moderatorId})._id} ,{
-				$set: {players: newPlayers}
+				$set: {players: newPlayers, open: open}
 			});
 		}
 		else {

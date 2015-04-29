@@ -3,7 +3,8 @@ Template.home.events({
 		MafiaRooms.insert({
 			mod: Meteor.userId(),
 			players: {},
-			visible: true
+			visible: true,
+			open: false
 		});
 	},
 	'click #mod': function(evt) {
