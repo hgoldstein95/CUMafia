@@ -9,7 +9,14 @@ Template.joinroom.helpers({
 		return Meteor.userId()!=room.mod && room.visible==true;
 	},
 	'thereAreNoRooms': function(rooms) {
-		return rooms.length==0 || (rooms.length==1 && rooms[0].mod==Meteor.userId());
+		allRoomsAreInvisible=true;
+		for(i=0;i<rooms.length;i++){
+			if(rooms[i].visible==true && rooms[i].mod!=Meteor.userId()){
+				allRoomsAreInvisible=false;
+			}
+		}
+		console.log(allRoomsAreInvisible);
+		return rooms.length==0 || (rooms.length==1 && rooms[0].mod==Meteor.userId()) || allRoomsAreInvisible;
 	},
 	'notInAGame': function() {
 		return Session.get("myModId")==null;
