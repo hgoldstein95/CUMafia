@@ -15,7 +15,6 @@ Template.joinroom.helpers({
 				allRoomsAreInvisible=false;
 			}
 		}
-		console.log(allRoomsAreInvisible);
 		return rooms.length==0 || (rooms.length==1 && rooms[0].mod==Meteor.userId()) || allRoomsAreInvisible;
 	},
 	'notInAGame': function() {

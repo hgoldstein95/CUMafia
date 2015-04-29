@@ -60,6 +60,7 @@ Template.moderator.events({
 		var myroom = MafiaRooms.findOne({mod: moderatorId});
 		var myroomid = myroom._id;
 		MafiaRooms.remove(myroomid);
+		Session.set('setup',{});
 	},
 	'change #role-count': function(evt) {
 		var newSetup = Session.get('setup');

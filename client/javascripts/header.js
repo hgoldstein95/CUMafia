@@ -60,5 +60,8 @@ Template.header.helpers({
 Template.header.events({
 	'click .navbar-nav li a': function() {
 		$(".navbar-collapse").collapse('hide');
+	},
+	'click .navbar-nav li a': function() {
+		$(".navbar-collapse").collapse('hide');
 	}
 });

@@ -40,6 +40,7 @@ Router.map(function() {
 		template: 'moderator',
 		data: function() {
 			Session.set('current-page', 'moderator');
+			Session.set('setup', {});
 		}
 	});
 
