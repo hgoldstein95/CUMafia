@@ -5,22 +5,15 @@ Template.header.helpers({
 			return usr.profile.admin;
 	},
 	'isMod': function() {
-		if(MafiaRooms.findOne({mod: Meteor.userId()})!=null){
-			return true;
-		return false;
-		}
+		return MafiaRooms.findOne({mod: Meteor.userId()});
 	},
 	'isPlayer': function() {
-		if(Session.get("myModId")!=null){
-			return true;
-		return false;
-		}
+		return Session.get("myModId");
 	},
 	'myMod': function() {
-		myModId=Session.get("myModId");
-		if(Meteor.users.findOne({_id: myModId})!=null){
-			return Meteor.users.findOne({_id: myModId}).username;
-		}
+		//myModId=Session.get("myModId");
+		if(Meteor.users.findOne({_id: Session.get("myModId")}))
+			return Meteor.users.findOne({_id: Session.get("myModId")}).username;
 	},
 	'cardsActive': function() {
 		if(Session.get('current-page') === 'cards')
