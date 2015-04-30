@@ -22,7 +22,11 @@
 						<tbody>
 							{{#each players}}
 								<tr>
-									<td>{{this.username}}</td>
+									{{#if playerHadRoleAndLeft this}}
+										<td>{{this.username}} (Left the Game)</td>	
+									{{else}}
+										<td>{{this.username}}</td>
+									{{/if}}
 									<td><em>{{this.role}}</em></td>
 									<td><input type="text" name="" id="input" class="form-control" title=""></td>
 									<td><button type="button" id="kick-player" data-value="{{this.username}}" class="btn btn-warning">Kick {{this.username}}</button></td>
@@ -50,6 +54,7 @@
 				{{else}}
 					<button type="button" id="unlock-players" class="btn btn-primary">Unlock Players</button>
 				{{/if}}
+				<button type="button" id="refresh" class="btn btn-primary pull-left">Refresh Players and Roles</button>
 			</div>
 			<div class="col-sm-6">
 				<div class="table-responsive">

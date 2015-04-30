@@ -29,13 +29,21 @@ Template.joinroom.events ({
 	'click a.room': function(e) {
 		var moderatorId = Meteor.users.findOne({username: $(e.target).data("value")})._id;
 		var idValue = Meteor.userId();
-		var newPlayers = MafiaRooms.findOne({mod: moderatorId}).players;
+		var myRoom = MafiaRooms.findOne({mod: moderatorId});
+		var newPlayers = myRoom.players;
 		if(!(idValue in newPlayers)){
 			newPlayers[idValue]=null;
 		}
-		MafiaRooms.update({_id: MafiaRooms.findOne({mod: moderatorId})._id} ,{
-			$set: {players: newPlayers}
-		});
+		if(_.keys(myRoom.initialPlayers).indexOf(Meteor.userId())==-1){
+			MafiaRooms.update({_id: MafiaRooms.findOne({mod: moderatorId})._id} ,{
+				$set: {players: newPlayers, initialPlayers: newPlayers}
+			});
+		}
+		else{
+			MafiaRooms.update({_id: MafiaRooms.findOne({mod: moderatorId})._id} ,{
+				$set: {players: myRoom.initialPlayers}
+			});
+		}
 		Session.set("myModId",moderatorId);
 	},
 	'click a.already-in-a-room': function() {
