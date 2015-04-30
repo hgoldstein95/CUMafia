@@ -1,6 +1,7 @@
 Template.cards.events({
-	'click #expand-role': function(evt) {
-		$(evt.target).parent().parent().next('.panel-body').toggle();
+	'click .card-heading, .card-title': function(evt) {
+		var id = $(evt.target).data('id');
+		$('#' + id).toggle();
 	},
 	'click #expand-all': function(evt) {
 		$('.panel-body').toggle();
