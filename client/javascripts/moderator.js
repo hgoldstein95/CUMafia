@@ -60,7 +60,7 @@ Template.moderator.events({
             })._id
         }, {
             $set: {
-                players: newPlayers
+                players: newPlayers, initialPlayers: newPlayers
             }
         });
     },
@@ -82,6 +82,17 @@ Template.moderator.events({
         MafiaRooms.remove(myRoomId);
         Session.set('setup', {});
     },
+    'click button#refresh': function(evt) {
+        var players = MafiaRooms.findOne({mod: Meteor.userId()}).players;
+        var keys = _.keys(players);
+        console.log(keys);
+        for(i=0;i<keys.length;i++){
+            players[keys[i]]=null;
+        }
+        MafiaRooms.update({_id: MafiaRooms.findOne({mod: Meteor.userId()})._id} ,{
+            $set: {initialPlayers: players}
+        });
+    },
     'change #role-count': function(evt) {
         var newSetup = Session.get('setup');
         newSetup[$(evt.target).data("title")] = $(evt.target).val();
@@ -95,8 +106,8 @@ Template.moderator.helpers({
             mod: Meteor.userId()
         });
         if (myRoom) {
-            var ids = _.keys(myRoom.players);
-            var vals = _.values(myRoom.players);
+            var ids = _.keys(myRoom.initialPlayers);
+            var vals = _.values(myRoom.initialPlayers);
             var usersAndRoles = [];
             for (i = 0; i < ids.length; i++) {
                 if (!vals[i]) {
@@ -119,12 +130,29 @@ Template.moderator.helpers({
         }
         return [];
     },
+    'playerHadRoleAndLeft': function(player) {
+        var myRoom = MafiaRooms.findOne({mod: Meteor.userId()});
+        if(myRoom){
+            var playerId = Meteor.users.findOne({username: player.username})._id;
+            var initialKeys = _.keys(myRoom.initialPlayers);
+            var keys = _.keys(myRoom.players);
+            if(initialKeys.indexOf(playerId)!=-1 && keys.indexOf(playerId)==-1 && player.role=="Waiting"){
+                var newPlayers = myRoom.players;
+                delete newPlayers[Meteor.users.findOne({username: player.username})._id];
+                MafiaRooms.update({_id: MafiaRooms.findOne({mod: Meteor.userId()})._id} ,
+                {
+                    $set: {initialPlayers: newPlayers}
+                });
+            }
+            return initialKeys.indexOf(playerId)!=-1 && keys.indexOf(playerId)==-1 && player.role!="Waiting";
+        }
+    },
     'numPlayers': function() {
         var myRoom = MafiaRooms.findOne({
             mod: Meteor.userId()
         });
         if (myRoom) {
-            return _.keys(myRoom.players).length;
+            return _.keys(myRoom.initialPlayers).length;
         }
     },
     'visible': function() {

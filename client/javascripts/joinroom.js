@@ -34,7 +34,7 @@ Template.joinroom.events ({
 			newPlayers[idValue]=null;
 		}
 		MafiaRooms.update({_id: MafiaRooms.findOne({mod: moderatorId})._id} ,{
-			$set: {players: newPlayers}
+			$set: {players: newPlayers, initialPlayers: newPlayers}
 		});
 		Session.set("myModId",moderatorId);
 	},

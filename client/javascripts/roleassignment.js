@@ -41,19 +41,20 @@ Template.roleassignment.helpers({
 		var countMafias=0;
 		var countThirdParties=0;
 		for(i=0;i<values.length;i++){
-			if(Cards.findOne({title: values[i]}).alignment == 'success'){
+			if(values[i] && Cards.findOne({title: values[i]}).alignment == 'success'){
 				townTitles[countTowns]=values[i];
 				countTowns=countTowns+1;
 			}
-			if(Cards.findOne({title: values[i]}).alignment == 'danger'){
+			if(values[i] && Cards.findOne({title: values[i]}).alignment == 'danger'){
 				mafiaTitles[countMafias]=values[i];
 				countMafias=countMafias+1;
 			}
-			if(Cards.findOne({title: values[i]}).alignment == 'warning'){
+			if(values[i] && Cards.findOne({title: values[i]}).alignment == 'warning'){
 				thirdPartyTitles[countThirdParties]=values[i];;
 				countThirdParties=countThirdParties+1;
 			}
 		}
+
 		townTitles=townTitles.sort();
 		mafiaTitles=mafiaTitles.sort();
 		thirdPartyTitles=thirdPartyTitles.sort();
