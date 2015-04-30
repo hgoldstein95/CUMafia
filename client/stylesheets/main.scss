@@ -26,3 +26,8 @@ a.link-unstyled:hover {
 #signup-link {
 	color: $theme-color;
 }
+
+#login-dropdown-list:hover, #login-dropdown-list:active, 
+#login-tab:hover, #login-tab:active {
+	background-color: $theme-color-two;
+}
