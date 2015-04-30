@@ -31,11 +31,42 @@ Template.roleassignment.helpers({
 	'roles': function() {
 		var myRoom=MafiaRooms.findOne({mod: Session.get("myModId")});
 		var values=_.values(myRoom.initialPlayers);
-		var roles=[];
+		var townTitles=[];
+		var mafiaTitles=[];
+		var thirdPartyTitles=[];
+		var towns=[];
+		var mafias=[];
+		var thirdParties=[];
+		var countTowns=0;
+		var countMafias=0;
+		var countThirdParties=0;
 		for(i=0;i<values.length;i++){
-			roles[i]=Cards.findOne({title: values[i]});
+			if(Cards.findOne({title: values[i]}).alignment == 'success'){
+				townTitles[countTowns]=values[i];
+				countTowns=countTowns+1;
+			}
+			if(Cards.findOne({title: values[i]}).alignment == 'danger'){
+				mafiaTitles[countMafias]=values[i];
+				countMafias=countMafias+1;
+			}
+			if(Cards.findOne({title: values[i]}).alignment == 'warning'){
+				thirdPartyTitles[countThirdParties]=values[i];;
+				countThirdParties=countThirdParties+1;
+			}
 		}
-		return roles;
+		townTitles=townTitles.sort();
+		mafiaTitles=mafiaTitles.sort();
+		thirdPartyTitles=thirdPartyTitles.sort();
+		for(i=0;i<townTitles.length;i++){
+			towns[i]=Cards.findOne({title: townTitles[i]});
+		}
+		for(i=0;i<mafiaTitles.length;i++){
+			mafias[i]=Cards.findOne({title: mafiaTitles[i]});
+		}
+		for(i=0;i<thirdPartyTitles.length;i++){
+			thirdParties[i]=Cards.findOne({title: thirdPartyTitles[i]});
+		}
+		return towns.concat(mafias).concat(thirdParties);
 	}
 })
 
