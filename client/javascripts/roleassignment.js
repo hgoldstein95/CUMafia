@@ -26,7 +26,8 @@ Template.roleassignment.helpers({
 		if(!Session.get("myModId")){
 			return false;
 		}
-		return MafiaRooms.findOne({mod: Session.get("myModId")}).open;
+		return MafiaRooms.findOne({mod: Session.get("myModId")}).open && 
+			MafiaRooms.findOne({mod: Session.get("myModId")}).players[Meteor.userId()];
 	},
 	'roles': function() {
 		var myRoom=MafiaRooms.findOne({mod: Session.get("myModId")});

@@ -85,12 +85,11 @@ Template.moderator.events({
     'click button#refresh': function(evt) {
         var players = MafiaRooms.findOne({mod: Meteor.userId()}).players;
         var keys = _.keys(players);
-        console.log(keys);
         for(i=0;i<keys.length;i++){
             players[keys[i]]=null;
         }
         MafiaRooms.update({_id: MafiaRooms.findOne({mod: Meteor.userId()})._id} ,{
-            $set: {initialPlayers: players}
+            $set: {players: players, initialPlayers: players}
         });
     },
     'change #role-count': function(evt) {
