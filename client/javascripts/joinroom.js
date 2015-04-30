@@ -47,6 +47,7 @@ Template.joinroom.events ({
 		MafiaRooms.insert({
 			mod: Meteor.userId(),
 			players: {},
+			initialPlayers: {},
 			visible: true,
 			open: false
 		});
