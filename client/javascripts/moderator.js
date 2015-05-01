@@ -151,7 +151,7 @@ Template.moderator.helpers({
             mod: Meteor.userId()
         });
         if (myRoom) {
-            return _.keys(myRoom.initialPlayers).length;
+            return _.keys(myRoom.players).length;
         }
     },
     'visible': function() {

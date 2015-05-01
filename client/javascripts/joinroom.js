@@ -40,9 +40,12 @@ Template.joinroom.events ({
 			});
 		}
 		else{
-			MafiaRooms.update({_id: MafiaRooms.findOne({mod: moderatorId})._id} ,{
-				$set: {players: myRoom.initialPlayers}
-			});
+			if(!newPlayers[Meteor.userId()]){
+				newPlayers[Meteor.userId()]=myRoom.initialPlayers[Meteor.userId()]
+				MafiaRooms.update({_id: MafiaRooms.findOne({mod: moderatorId})._id} ,{
+					$set: {players: newPlayers}
+				});
+			}
 		}
 		Session.set("myModId",moderatorId);
 	},
